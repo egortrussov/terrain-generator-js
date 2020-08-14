@@ -1,0 +1,86 @@
+// function init() {
+    let d = s = 512, c = document.querySelector('#canv');
+    let t = c.getContext('2d')
+    let g = [], r = 513, mh = 255, xh = 0;
+    let m = 100, a = 1103515245, cc = 12345;
+
+    function n(cj) {
+        let state = Math.round(Math.random() * (m - 1));
+        state = (a * state + cc) % m;
+        // if (cj) console.log(state)
+        
+
+        state /= (m - 1);
+        return state;
+    }
+
+    console.log(n(true))
+
+    while (r--) {
+        g.push([]);
+        let sd = d + 1;
+        while (sd--) {
+            g[g.length - 1].push(0);
+        }
+    }
+
+    while (s > 1) {
+        for (let y = 0; y < d; y += s)  
+            for (let x = 0; x < d; x += s) 
+                subdivide(x, y, x + s, y + s);
+        s = Math.round(s / 2);
+    }
+
+    let l = 255 / (xh - mh);
+
+    function getHeight(z0, z1, dl) {
+        let fc = dl * n() - dl / 2;
+        // console.log(n())
+        let e = (z0 + z1) / 2 + fc;
+        if (mh > e) mh = e;
+        if (xh < e) xh = e;
+        // console.log(z0, z1, dl)
+        return e;
+    }
+
+    function subdivide(x0, y0, x1, y1) {
+        let xn = Math.round((x0 + x1) / 2), yn = Math.round((y0 + y1) / 2);
+        // console.log(x1)
+        g[xn][y0] = getHeight(g[x0][y0], g[x1][y0], x1 - x0);
+        g[x0][yn] = getHeight(g[x0][y0], g[x0][y1], y1 - y0);
+        g[x1][yn] = getHeight(g[x1][y0], g[x1][y1], y1 - y0);
+        g[xn][y1] = getHeight(g[x0][y1], g[x1][y1], x1 - x0);
+        // g[x0][yn] = getHeight(g[x0][y0], g[x1][y1], y1 - y0);
+
+        g[xn][yn] = getHeight(g[x0][yn], g[x1][yn], x1 - x0);
+
+    }
+
+    c.width = d;
+    c.height = d;
+
+    let img = t.createImageData? t.createImageData(d, d) : t.createImageData(0, 0, d, d);
+
+    let px = img.data;
+    let x = d;
+
+    console.log(g, mh)
+
+    while (x--) {
+        let y = d;
+        while (y--) {
+            let e = Math.round((g[x][y] - mh) * 1);
+            let cl = e < 140 ? [0,0,12] : e < 150 ? [6, 6, 16] : e < 160 ? [12, 11, 9] : e < 190 ? [8, 14, 8] : e < 210 ? [6, 16, 6] : e < 230 ? [4, 14, 4] : e < 250 ? [9, 9, 6] : e < 290 ? [7, 7, 5] : e < 340 ? [5, 5, 3]  : [3, 3, 1];
+            let i = 4;
+            while (i--) {
+                px[x * 4 + (y * d) * 4 + i] = i > 2 ? 255 : cl[i] * 16;
+            }
+        }
+    }
+
+    // img.data = px;
+
+    t.putImageData(img, 0, 0)
+// }
+
+// init();
