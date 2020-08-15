@@ -1,8 +1,8 @@
 // function init() {
-    let d = s = 512, c = document.querySelector('#canv');
+    let d = s = 812, c = document.querySelector('#canv');
     let t = c.getContext('2d')
-    let g = [], r = 513, mh = 255, xh = 0;
-    let m = 100, a = 1103515245, cc = 12345;
+    let g = [], r = 813, mh = 255, xh = 0;
+    let m = 100000, a = 110, cc = 12345;
 
     function n(cj) {
         let state = Math.round(Math.random() * (m - 1));
@@ -25,10 +25,16 @@
     }
 
     while (s > 1) {
-        for (let y = 0; y < d; y += s)  
-            for (let x = 0; x < d; x += s) 
+        for (let y = 0; y + s < d; y += s)  
+            for (let x = 0; x + s < d; x += s) 
                 subdivide(x, y, x + s, y + s);
-        s = Math.round(s / 2);
+        let ss = 1;
+        while (ss * 2 < s) 
+            ss *= 2;
+        s = ss;
+        // s--;
+        // s = Math.round(s / 2);
+        console.log(s)
     }
 
     let l = 255 / (xh - mh);
@@ -70,7 +76,7 @@
         let y = d;
         while (y--) {
             let e = Math.round((g[x][y] - mh) * 1);
-            let cl = e < 140 ? [0,0,12] : e < 150 ? [6, 6, 16] : e < 160 ? [12, 11, 9] : e < 190 ? [8, 14, 8] : e < 210 ? [6, 16, 6] : e < 230 ? [4, 14, 4] : e < 250 ? [9, 9, 6] : e < 290 ? [7, 7, 5] : e < 340 ? [5, 5, 3]  : [3, 3, 1];
+            let cl = e < 140 ? [0,0,12] : e < 150 ? [6, 6, 16] : e < 160 ? [12, 11, 9] : e < 190 ? [8, 14, 8] : e < 210 ? [6, 16, 6] : e < 230 ? [4, 14, 4] : e < 250 ? [9, 11, 6] : e < 290 ? [7, 10, 5] : e < 340 ? [5, 8, 3]  : e < 380 ? [4, 7, 2] : e < 410 ? [4, 5, 2] : [3, 4, 2];
             let i = 4;
             while (i--) {
                 px[x * 4 + (y * d) * 4 + i] = i > 2 ? 255 : cl[i] * 16;
