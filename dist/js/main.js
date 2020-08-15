@@ -1,8 +1,11 @@
 // function init() {
-    let d = s = 812, c = document.querySelector('#canv');
+    let h = 1000, d = s = 600, c = document.querySelector('#canv');
     let t = c.getContext('2d')
-    let g = [], r = 813, mh = 255, xh = 0;
+    let g = [], r = Math.max(d, h) + 1, mh = 255, xh = 0;
     let m = 100000, a = 110, cc = 12345;
+
+    s = Math.max(d, h) + 1;
+    r = h + 1;
 
     function n(cj) {
         let state = Math.round(Math.random() * (m - 1));
@@ -25,17 +28,17 @@
     }
 
     while (s > 1) {
-        for (let y = 0; y + s < d; y += s)  
-            for (let x = 0; x + s < d; x += s) 
+        for (let x = 0; x + s < h; x += s) 
+            for (let y = 0; y + s < d; y += s)  
                 subdivide(x, y, x + s, y + s);
         let ss = 1;
         while (ss * 2 < s) 
             ss *= 2;
         s = ss;
-        // s--;
-        // s = Math.round(s / 2);
         console.log(s)
     }
+
+    // console.log(g[700][900])
 
     let l = 255 / (xh - mh);
 
@@ -63,12 +66,12 @@
     }
 
     c.width = d;
-    c.height = d;
+    c.height = h;
 
-    let img = t.createImageData? t.createImageData(d, d) : t.createImageData(0, 0, d, d);
+    let img = t.createImageData? t.createImageData(d, h) : t.createImageData(0, 0, d, w);
 
     let px = img.data;
-    let x = d;
+    let x = h;
 
     console.log(g, mh)
 
@@ -79,7 +82,7 @@
             let cl = e < 140 ? [0,0,12] : e < 150 ? [6, 6, 16] : e < 160 ? [12, 11, 9] : e < 190 ? [8, 14, 8] : e < 210 ? [6, 16, 6] : e < 230 ? [4, 14, 4] : e < 250 ? [9, 11, 6] : e < 290 ? [7, 10, 5] : e < 340 ? [5, 8, 3]  : e < 380 ? [4, 7, 2] : e < 410 ? [4, 5, 2] : [3, 4, 2];
             let i = 4;
             while (i--) {
-                px[x * 4 + (y * d) * 4 + i] = i > 2 ? 255 : cl[i] * 16;
+                px[y * 4 + (x * d) * 4 + i] = i > 2 ? 255 : cl[i] * 16;
             }
         }
     }

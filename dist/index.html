@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terrain generator</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/0f22e9c5d4.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <canvas id="canv"></canvas>
+    <nav>
+        <div class="nav-left">
+            <div class="logo">Terrain visualizer</div>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="icon">
+                <i class="fas fa-info-circle"></i>
+            </a>
+            <a href="https://github.com/egortrussov/terrain-generator-js" class="icon">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </nav>
+    <div class="settings-block">
+        <form id="settings-form">
+            <div class="input-group">
+                <label>Width: </label>
+                <input type="range" name="width">
+            </div>
+            <div class="input-group">
+                <label>Height: </label>
+                <input type="range" name="height">
+            </div>
+        </form>
+        <div class="buttons">
+            <button class="btn btn-cta" id="btn-run">Visualize</button>
+            <button class="btn btn-primary" id="download">
+                <i class="fas fa-download"></i>
+            </button>
+        </div>
+    </div>
+    <div class="canvas-container">
+        <canvas id="canv"></canvas>
+    </div>
 
     <script src="./js/main.js"></script>
 </body>
