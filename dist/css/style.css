@@ -151,6 +151,8 @@ nav .nav-right .icon:hover {
   background-color: #ddd;
   margin: auto;
   position: relative;
+  min-width: 200px;
+  min-height: 200px;
 }
 
 .canvas-container .size-handler {

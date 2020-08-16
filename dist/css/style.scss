@@ -138,6 +138,8 @@ nav {
     background-color: #ddd;
     margin: auto;
     position: relative;
+    min-width: 200px;
+    min-height: 200px;
 
     .size-handler {
         position: absolute;

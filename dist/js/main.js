@@ -1,5 +1,6 @@
 var canvasContainer = document.querySelector('#canvas-container');
 var sizeHandlers = document.querySelectorAll('.size-handler');
+var formHandlers = document.querySelectorAll('.form-handler');
 var width = canvasContainer.width;
 var height = canvasContainer.height;
 var leftHandlerOffset = 0;
@@ -57,5 +58,45 @@ sizeHandlers.forEach(function (handler) {
     }
     else {
         bottomHandlerOffset = Math.round(handler.getBoundingClientRect().top);
+        handler.addEventListener('mousedown', function (e) {
+            isMouseDown = true;
+            resizeHandlerType = 'bottom';
+            document.addEventListener('mousemove', function (event) {
+                if (!isMouseDown || resizeHandlerType !== 'bottom')
+                    return;
+                bottomHandlerOffset = event.pageY;
+                var elementTopOffset = Math.round(canvasContainer.getBoundingClientRect().top);
+                height = Math.abs(bottomHandlerOffset - elementTopOffset);
+                canvasContainer.style.height = height + "px";
+            });
+            document.addEventListener('mouseup', function (event) {
+                isMouseDown = false;
+                console.log('object');
+                document.addEventListener('mousemove', function () { return true; });
+            });
+        });
     }
+});
+formHandlers.forEach(function (handler) {
+    handler.value = '400';
+    handler.min = '200';
+    console.log(handler.value);
+    if (handler.name === 'width') {
+        handler.max = Math.round(window.innerWidth).toString();
+    }
+    else {
+        handler.max = '900';
+    }
+    handler.addEventListener('change', function (e) {
+        var val = +handler.value;
+        console.log(val);
+        if (handler.name === 'width') {
+            width = val;
+            canvasContainer.style.width = val.toString() + 'px';
+        }
+        else {
+            height = val;
+            canvasContainer.style.height = val.toString() + 'px';
+        }
+    });
 });
