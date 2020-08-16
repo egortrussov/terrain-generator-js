@@ -142,4 +142,69 @@ nav .nav-right .icon:hover {
 .settings-block .buttons .btn-primary i:hover {
   color: #1a9755;
 }
+
+.canvas-container {
+  max-width: 92% !important;
+  width: 400px;
+  max-height: 900px;
+  height: 400px;
+  background-color: #ddd;
+  margin: auto;
+  position: relative;
+}
+
+.canvas-container .size-handler {
+  position: absolute;
+  background-color: #ccc;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.canvas-container .size-handler .bar {
+  background-color: #636363;
+}
+
+.canvas-container .size-handler.side {
+  height: 100%;
+  width: 15px;
+  top: 0;
+}
+
+.canvas-container .size-handler.side .bar {
+  width: 7px;
+  height: 40px;
+}
+
+.canvas-container .size-handler.side.left {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.canvas-container .size-handler.side.right {
+  left: auto;
+  right: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.canvas-container .size-handler.bottom {
+  width: 100%;
+  height: 15px;
+  bottom: 0;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+
+.canvas-container .size-handler.bottom .bar {
+  height: 7px;
+  width: 40px;
+}
 /*# sourceMappingURL=style.css.map */
