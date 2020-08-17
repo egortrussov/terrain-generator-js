@@ -12,7 +12,7 @@
         state = (a * state + cc) % m;
         // if (cj) console.log(state)
         
-
+    
         state /= (m - 1);
         return state;
     }
