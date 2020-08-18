@@ -37,5 +37,6 @@ function generate(h, d) {
             for (var y = 0; y + s < d; y += s)
                 subdivide(x, y, x + s, y + s);
     }
-    return [];
+    return g;
 }
+export { generate };

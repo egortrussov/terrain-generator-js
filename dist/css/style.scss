@@ -141,6 +141,11 @@ nav {
     min-width: 200px;
     min-height: 200px;
 
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+
     .size-handler {
         position: absolute;
         background-color: #ccc;

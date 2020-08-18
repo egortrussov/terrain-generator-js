@@ -56,5 +56,9 @@ function generate(
                 subdivide(x, y, x + s, y + s); 
     }
 
-    return []
+    return g;
 }
+
+export {
+    generate
+};
