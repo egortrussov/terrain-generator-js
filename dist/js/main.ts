@@ -1,11 +1,12 @@
 // import { generate } from './algorithm/algo'
-// import getNodeColor from './middleware/getNodeColor'
+// import getNodeColor1 from './middleware/getNodeColor'
 
 let canvasContainer: HTMLDivElement = document.querySelector('#canvas-container');
 let canvas: HTMLCanvasElement = document.querySelector('#canv');
 let sizeHandlers: NodeList = document.querySelectorAll('.size-handler');
 let formHandlers: NodeList = document.querySelectorAll('.form-handler');
 let visualiseBtn: HTMLButtonElement = document.querySelector('#btn-run');
+let downloadBtn: HTMLButtonElement = document.querySelector('#download');
 
 let width: number = 400;
 let height: number = 400;
@@ -19,6 +20,7 @@ let bottomHandlerOffset: number = 0;
 
 let isMouseDown: boolean = false;
 let resizeHandlerType: string = '';
+
 
 sizeHandlers.forEach((handler: HTMLDivElement) => {
     let isSide: boolean = handler.classList.contains('side');
@@ -225,6 +227,14 @@ visualiseBtn.addEventListener('click', (): void => {
     visualize();
     console.log('object')
 });
+
+downloadBtn.addEventListener('click', (): void => {
+    let link: HTMLAnchorElement = document.createElement('a');
+    let imgData: string = canvas.toDataURL();
+    link.download = 'Generated terrain.png';
+    link.href = imgData;
+    link.click();
+})
 
 // visualise 
 

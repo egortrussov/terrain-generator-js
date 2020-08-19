@@ -1,10 +1,11 @@
 // import { generate } from './algorithm/algo'
-// import getNodeColor from './middleware/getNodeColor'
+// import getNodeColor1 from './middleware/getNodeColor'
 var canvasContainer = document.querySelector('#canvas-container');
 var canvas = document.querySelector('#canv');
 var sizeHandlers = document.querySelectorAll('.size-handler');
 var formHandlers = document.querySelectorAll('.form-handler');
 var visualiseBtn = document.querySelector('#btn-run');
+var downloadBtn = document.querySelector('#download');
 var width = 400;
 var height = 400;
 canvas.width = width;
@@ -184,6 +185,13 @@ function generate(h, d) {
 visualiseBtn.addEventListener('click', function () {
     visualize();
     console.log('object');
+});
+downloadBtn.addEventListener('click', function () {
+    var link = document.createElement('a');
+    var imgData = canvas.toDataURL();
+    link.download = 'Generated terrain.png';
+    link.href = imgData;
+    link.click();
 });
 // visualise 
 function visualize() {
